@@ -1,1 +1,2 @@
 # Sentiment-analysis-for-social-media-Data using Python programing language.
+#Sentiment analysis on social media data involves using natural language processing (NLP) techniques to determine the sentiment expressed in text data gathered from social media platforms such as Twitter, Facebook, Reddit, etc. The goal is to understand the opinions, attitudes, and emotions of users towards certain topics, products, events, or brands.

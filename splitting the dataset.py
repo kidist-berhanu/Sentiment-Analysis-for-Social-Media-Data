@@ -23,5 +23,10 @@ labels = df['sentiment']
 
 # (80% for training, 20% for testing)
 X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.2, random_state=42)
+#splitting the string based on white space(it converts the into array of string)
 train_data=train_data.apply(lambda features:features.split())
-test_data=test_data.apply(lambda labels:comment.split())
+test_data=test_data.apply(lambda features:features.split())
+#final stage of coverting our data into integer
+train_data = train_data.apply(lambda x: function(x))
+test_data = test_data.apply(lambda x: function(x))
+

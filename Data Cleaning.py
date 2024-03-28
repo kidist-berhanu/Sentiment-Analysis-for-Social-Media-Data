@@ -11,3 +11,6 @@ df = pd.read_csv(file_path)
 # Remove any rows with missing values
 df.dropna(inplace=True)
 
+# Convert the sentiment column to numeric values
+sentiment_mapping = {'positive': 1, 'negative': -1, 'neutral': 0}
+df['sentiment'] = df['sentiment'].map(sentiment_mapping)

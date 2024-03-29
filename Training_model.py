@@ -61,6 +61,20 @@ df.to_csv(cleaned_file_path, index=False)
 X = df['stemmed_content'].values
 Y = df['sentiment'].values
 
+# Visualize Data
+import matplotlib.pyplot as plt
+# Pie chart
+# Counting occurrences of each sentiment
+sentiment_counts = df['sentiment'].value_counts()
+sentiment_counts = sentiment_counts.rename({1: 'Positive', -1: 'Negative', 0: 'Neutral'})
+
+# Plotting a pie chart
+plt.figure(figsize=(6, 6))
+plt.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+plt.title('Sentiment Distribution')
+plt.show()
+
 # splitting the data to training data and test data
 X_train,X_test,Y_train,Y_test = train_test_split(X, Y, test_size = 0.2, stratify = Y, random_state = 2)
 print(X.shape, X_train.shape, X_test.shape)

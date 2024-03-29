@@ -26,3 +26,6 @@ df.dropna(subset=['Comment', 'sentiment'], inplace=True)
 # Convert the sentiment column to numeric values
 sentiment_mapping = {'positive': 1, 'negative': -1, 'neutral': 0}
 df['sentiment'] = df['sentiment'].map(sentiment_mapping)
+
+# Removing duplicates
+df.drop_duplicates(inplace=True)

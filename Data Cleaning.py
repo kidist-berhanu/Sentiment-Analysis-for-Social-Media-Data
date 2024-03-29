@@ -4,6 +4,8 @@ import nltk
 import re
 from nltk.corpus import stopwords
 
+nltk.download('stopwords')
+
 file_path = r'Gaming_comments_sentiments_from_Reddit(Dataset).csv'
 
 df = pd.read_csv(file_path)

@@ -7,7 +7,7 @@ from nltk.stem.porter import PorterStemmer
 
 nltk.download('stopwords')
 
-file_path = r'Gaming_comments_sentiments_from_Reddit(Dataset).csv'
+file_path = r'/Gaming_comments_sentiments_from_Reddit(Dataset).csv'
 df = pd.read_csv(file_path)
 
 # Data Cleaning
@@ -45,3 +45,9 @@ def stemming(content):
 #stemming contents of the comment section
 df['stemmed_content'] = df['Comment'].apply(stemming)
 print(df['stemmed_content'])
+
+# Define the file path for the cleaned data
+cleaned_file_path = r'/cleaned_data.csv'
+
+# Save the cleaned DataFrame to a new CSV file
+df.to_csv(cleaned_file_path, index=False)

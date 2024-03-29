@@ -1,6 +1,8 @@
-import tensorflow as tf
-import numpy as np
+import tensorflow as tf 
 import pandas as pd
+import nltk
+import re
+from nltk.corpus import stopwords
 
 file_path = r'Gaming_comments_sentiments_from_Reddit(Dataset).csv'
 

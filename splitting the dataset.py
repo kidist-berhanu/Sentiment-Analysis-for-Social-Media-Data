@@ -1,32 +1,29 @@
-import tensorflow as tf
-import numpy as np
+import keras
+import nltk
 import pandas as pd
-
-file_path = r'C:\Users\Yabsra\Desktop\Projects\Selected topics\Sentiment-Analysis-for-Social-Media-Data\Gaming_comments_sentiments_from_Reddit(Dataset).csv'
-
-df = pd.read_csv(file_path)
-
-# Data Cleaning
-
-# Remove any rows with missing values
-df.dropna(inplace=True)
-
-# Convert the sentiment column to numeric values
-sentiment_mapping = {'positive': 1, 'negative': -1, 'neutral': 0}
-df['sentiment'] = df['sentiment'].map(sentiment_mapping)
-
-#splitting data in to training and testing
+import numpy as np
+import re
+from nltk.stem import WordNetLemmatizer
+from sklearn.linear_model import LogisticRegression
+from nltk.corpus import stopwords
+from numpy import array
+from tensorflow.keras.preprocessing.text import one_hot, Tokenizer
+from keras.models import Sequential
+from tensorflow.keras.layers import Activation, Dropout, Dense
+from keras.layers import Flatten, GlobalMaxPooling1D, Embedding, Conv1D, LSTM
 from sklearn.model_selection import train_test_split
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+import tensorflow as tf
+#read dataser
+df = pd.read_csv("C:/Users/HP/Documents/Gaming_comments_sentiments on reddit.csv")
+#show the first 5 datas in the dataset
+df.head()
+#shows row and columns
+df.shape
+# draws graph
+import seaborn as sns
+sns.countplot(x='sentiment', data=df)
+#
+df["Comment"][4]
 
-features = df['comment'] 
-labels = df['sentiment']
-
-# (80% for training, 20% for testing)
-X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=0.2, random_state=42)
-#splitting the string based on white space(it converts the into array of string)
-train_data=train_data.apply(lambda features:features.split())
-test_data=test_data.apply(lambda features:features.split())
-#final stage of coverting our data into integer
-train_data = train_data.apply(lambda x: function(x))
-test_data = test_data.apply(lambda x: function(x))
 

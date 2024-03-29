@@ -8,3 +8,8 @@ X_train_prediction = model.predict(X_train)
 training_data_accuracy = accuracy_score(Y_train, X_train_prediction)
 print(training_data_accuracy)
 
+# Accuracy score on test data
+X_test_prediction = model.predict(X_test)
+test_data_accuracy = accuracy_score(Y_test, X_test_prediction)
+print(test_data_accuracy)
+

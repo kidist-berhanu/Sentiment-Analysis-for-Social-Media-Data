@@ -19,3 +19,10 @@ df['sentiment'] = df['sentiment'].apply(lambda x: ' '.join([word for word in x.s
 # Remove special characters
 df['Comment'] = df['Comment'].apply(lambda x: re.sub(r'[^a-zA-Z0-9\s]', '', x))
 df['sentiment'] = df['sentiment'].apply(lambda x: re.sub(r'[^a-zA-Z0-9\s]', '', x))
+
+# Remove rows where either 'Comment' or 'sentiment' column contains null values
+df.dropna(subset=['Comment', 'sentiment'], inplace=True)
+
+# Convert the sentiment column to numeric values
+sentiment_mapping = {'positive': 1, 'negative': -1, 'neutral': 0}
+df['sentiment'] = df['sentiment'].map(sentiment_mapping)

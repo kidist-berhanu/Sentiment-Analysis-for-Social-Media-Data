@@ -3,6 +3,7 @@ import pandas as pd
 import nltk
 import re
 from nltk.corpus import stopwords
+from nltk.stem.porter import PorterStemmer
 
 nltk.download('stopwords')
 

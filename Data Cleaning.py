@@ -16,11 +16,6 @@ stop_words = set(stopwords.words('english'))
 df['Comment'] = df['Comment'].apply(lambda x: ' '.join([word for word in x.split() if word.lower() not in stop_words]))
 df['sentiment'] = df['sentiment'].apply(lambda x: ' '.join([word for word in x.split() if word.lower() not in stop_words]))
 
-# Convert the sentiment column to numeric values
-sentiment_mapping = {'positive': 1, 'negative': -1, 'neutral': 0}
-df['sentiment'] = df['sentiment'].map(sentiment_mapping)
-
-# Removing duplicates
-df.drop_duplicates(inplace=True)
-#to check the structure of the DataFrame
-print(df.info())
+# Remove special characters
+df['Comment'] = df['Comment'].apply(lambda x: re.sub(r'[^a-zA-Z0-9\s]', '', x))
+df['sentiment'] = df['sentiment'].apply(lambda x: re.sub(r'[^a-zA-Z0-9\s]', '', x))

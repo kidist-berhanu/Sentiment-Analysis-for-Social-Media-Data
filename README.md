@@ -7,4 +7,9 @@
 
 # Preprocessing: The collected data usually contains noise such as emojis, hashtags, URLs, Null values and non-standard spellings. Preprocessing involves cleaning the data by removing these elements, tokenizing the text, and converting it to a standardized format.
 
+# Splitting Dataset: This involves splitting the dataset into train and test datasets.
 
+# Sentiment Classification: Sentiment classification is the core task of sentiment analysis. There are several approaches to sentiment classification, in our case we used 
+Machine Learning-based classification (i.e Logistic Regression): Trains a machine learning model  on labeled data to classify text into positive, negative, or neutral categories.
+
+# Evaluation: The performance of the sentiment analysis model is evaluated using metrics accuracy.

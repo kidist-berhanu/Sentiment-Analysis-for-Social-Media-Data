@@ -41,3 +41,7 @@ def stemming(content):
   stemmed_content = [port_stem.stem(word) for word in stemmed_content if not word in stopwords.words('english')]
   stemmed_content = ' '.join(stemmed_content)
   return stemmed_content
+
+#stemming contents of the comment section
+df['stemmed_content'] = df['Comment'].apply(stemming)
+print(df['stemmed_content'])

@@ -19,4 +19,3 @@ df['sentiment'] = df['sentiment'].map(sentiment_mapping)
 df.drop_duplicates(inplace=True)
 #to check the structure of the DataFrame
 print(df.info())
-# kljk;jlklkh

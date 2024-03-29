@@ -75,6 +75,20 @@ plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
 plt.title('Sentiment Distribution')
 plt.show()
 
+# Bar graph
+# Counting occurrences of each sentiment
+sentiment_counts = df['sentiment'].value_counts()
+sentiment_counts = sentiment_counts.rename({1: 'Positive', -1: 'Negative', 0: 'Neutral'})
+
+# Plotting a bar graph
+plt.figure(figsize=(8, 6))
+sentiment_counts.plot(kind='bar', color=['green', 'red', 'blue'])
+plt.xlabel('Sentiment')
+plt.ylabel('Count')
+plt.title('Sentiment Distribution')
+plt.xticks(rotation=0)
+plt.show()
+
 # splitting the data to training data and test data
 X_train,X_test,Y_train,Y_test = train_test_split(X, Y, test_size = 0.2, stratify = Y, random_state = 2)
 print(X.shape, X_train.shape, X_test.shape)

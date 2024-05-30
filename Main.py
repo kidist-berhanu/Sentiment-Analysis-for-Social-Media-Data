@@ -8,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+import pickle
 
 
 nltk.download('stopwords')
@@ -112,3 +113,21 @@ print(training_data_accuracy)
 X_test_prediction = model.predict(X_test)
 test_data_accuracy = accuracy_score(Y_test, X_test_prediction)
 print(test_data_accuracy)
+
+# Saving the trained model for future prediction
+filename = 'trained_model.sav'
+pickle.dump(model, open(filename,'wb'))
+
+# Using the trained model to make new prediction
+# Loading the saved model
+loaded_model = pickle.load(open('/trained_model.sav', 'rb'))
+X_new = X_test[2000]
+print(Y_test[2000])
+
+prediction = model.predict(X_new)
+if (prediction[0] == -1):
+  print('Negative sentiment')
+elif (prediction[0] == 1):
+  print('Positive sentiment')
+else:
+  print('Neutral sentiment')

@@ -1,4 +1,3 @@
-
 import tensorflow as tf 
 import pandas as pd
 import nltk
@@ -7,6 +6,9 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
 
 nltk.download('stopwords')
 
@@ -59,6 +61,34 @@ df.to_csv(cleaned_file_path, index=False)
 X = df['stemmed_content'].values
 Y = df['sentiment'].values
 
+# Visualize Data
+import matplotlib.pyplot as plt
+# Pie chart
+# Counting occurrences of each sentiment
+sentiment_counts = df['sentiment'].value_counts()
+sentiment_counts = sentiment_counts.rename({1: 'Positive', -1: 'Negative', 0: 'Neutral'})
+
+# Plotting a pie chart
+plt.figure(figsize=(6, 6))
+plt.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%', startangle=140)
+plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
+plt.title('Sentiment Distribution')
+plt.show()
+
+# Bar graph
+# Counting occurrences of each sentiment
+sentiment_counts = df['sentiment'].value_counts()
+sentiment_counts = sentiment_counts.rename({1: 'Positive', -1: 'Negative', 0: 'Neutral'})
+
+# Plotting a bar graph
+plt.figure(figsize=(8, 6))
+sentiment_counts.plot(kind='bar', color=['green', 'red', 'blue'])
+plt.xlabel('Sentiment')
+plt.ylabel('Count')
+plt.title('Sentiment Distribution')
+plt.xticks(rotation=0)
+plt.show()
+
 # splitting the data to training data and test data
 X_train,X_test,Y_train,Y_test = train_test_split(X, Y, test_size = 0.2, stratify = Y, random_state = 2)
 print(X.shape, X_train.shape, X_test.shape)
@@ -67,3 +97,18 @@ print(X.shape, X_train.shape, X_test.shape)
 vectorizer = TfidfVectorizer()
 X_train =  vectorizer.fit_transform(X_train)
 X_test =  vectorizer.transform(X_test)
+
+# Training the model using logistic regression
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train,Y_train)
+
+# Model Evaluation 
+# Accuracy score on training data
+X_train_prediction = model.predict(X_train)
+training_data_accuracy = accuracy_score(Y_train, X_train_prediction)
+print(training_data_accuracy)
+
+# Accuracy score on test data
+X_test_prediction = model.predict(X_test)
+test_data_accuracy = accuracy_score(Y_test, X_test_prediction)
+print(test_data_accuracy)
